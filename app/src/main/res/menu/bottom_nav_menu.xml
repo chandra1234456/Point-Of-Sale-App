@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/analysis"
+        android:icon="@drawable/ic_analysis"
+        android:title="Analysis" />
+
+    <item
+        android:id="@+id/createBill"
+        android:icon="@drawable/ic_credit_bill"
+        android:title="Create Bill" />
+
+    <item
+        android:id="@+id/notification"
+        android:icon="@drawable/ic_notification"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_notification"
+        android:title="Profile" />
+
+
+</menu>
