@@ -6,16 +6,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.chandra.practice.pointofsaleapp.R
-import com.chandra.practice.pointofsaleapp.data.AddProductItemDetails
+import com.chandra.practice.pointofsaleapp.data.CustomerProductDetail
 import com.chandra.practice.pointofsaleapp.util.setOnSingleClickListener
 import com.google.android.material.textview.MaterialTextView
 
 class ProductAdapter(
     private val listner : OnProductAdapterListener ,
-    private val productList : List<AddProductItemDetails> ,
+    private val productList : List<CustomerProductDetail> ,
                     ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     interface OnProductAdapterListener {
-        fun onProductItemDelete(product : AddProductItemDetails , position : Int)
+        fun onProductItemDelete(product : CustomerProductDetail , position : Int)
     }
 
     class ProductViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -36,7 +36,7 @@ class ProductAdapter(
         val product = productList[position]
         holder.productName.text = product.productName
         holder.productPrice.text = "Price: ${product.productPrice}"
-        holder.quantity.text = "Quantity: ${product.quantity}"
+        holder.quantity.text = "Quantity: ${product.productQuantity}"
         holder.comments.text = "Comments: ${product.comments}" // If you want to show comments
         holder.ivDelete.setOnSingleClickListener {
             listner.onProductItemDelete(product , position)

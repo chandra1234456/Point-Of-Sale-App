@@ -98,6 +98,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvText" />
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvQuickActions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="Quck Actions"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dashBoardRecyclerview" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/quickActionsRecyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvQuickActions" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvRecentBillTransaction"
@@ -109,7 +128,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dashBoardRecyclerview" />
+                app:layout_constraintTop_toBottomOf="@id/quickActionsRecyclerview" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recentBillRecyclerview"

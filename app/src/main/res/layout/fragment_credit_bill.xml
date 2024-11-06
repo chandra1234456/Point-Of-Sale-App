@@ -53,14 +53,14 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/fullNameInputLayout"
+                android:id="@+id/tilCustomerName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:hint="Customer Name *">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/fullNameEditText"
+                    android:id="@+id/tieCustomerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_person_outline"
@@ -68,13 +68,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/businessNameInputLayout"
+                android:id="@+id/tilPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Mobile Number *">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/businessNameEditText"
+                    android:id="@+id/tiePhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_local_phone"
@@ -201,7 +201,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/genarateBillButton"
+                android:id="@+id/generateBillButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

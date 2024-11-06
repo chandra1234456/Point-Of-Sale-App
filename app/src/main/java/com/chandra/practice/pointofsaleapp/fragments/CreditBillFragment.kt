@@ -1,34 +1,54 @@
 package com.chandra.practice.pointofsaleapp.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chandra.practice.pointofsaleapp.R
 import com.chandra.practice.pointofsaleapp.adapter.ProductAdapter
-import com.chandra.practice.pointofsaleapp.data.AddProductItemDetails
+import com.chandra.practice.pointofsaleapp.data.CustomerProductDetail
+import com.chandra.practice.pointofsaleapp.data.NewGenerateBillCustomerDetails
 import com.chandra.practice.pointofsaleapp.databinding.FragmentCreditBillBinding
+import com.chandra.practice.pointofsaleapp.repository.CreateAccountRepository
+import com.chandra.practice.pointofsaleapp.repository.NewGenerateBillRepository
+import com.chandra.practice.pointofsaleapp.roomdb.AppDatabase
 import com.chandra.practice.pointofsaleapp.util.FullScreenAlertDialogFragment
 import com.chandra.practice.pointofsaleapp.util.setOnSingleClickListener
+import com.chandra.practice.pointofsaleapp.util.showErrorSnackBar
 import com.chandra.practice.pointofsaleapp.util.toastMsg
+import com.chandra.practice.pointofsaleapp.viewmodel.CreateAccountViewModel
+import com.chandra.practice.pointofsaleapp.viewmodel.NewGenerateBillViewModel
+import com.chandra.practice.pointofsaleapp.viewmodelfactory.CreateAccountViewModelFactory
+import com.chandra.practice.pointofsaleapp.viewmodelfactory.NewGenerateBillViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
+import kotlin.math.log
 
 
 class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductAddedListener ,
                            ProductAdapter.OnProductAdapterListener {
     private lateinit var creditBillBinding : FragmentCreditBillBinding
-    private var addedProductList : MutableList<AddProductItemDetails> = mutableListOf()
+    private var addedProductList : MutableList<CustomerProductDetail> = mutableListOf()
     private lateinit var productAdapter : ProductAdapter
+    private lateinit var newGenerateBillViewModel : NewGenerateBillViewModel
+    private lateinit var newGenerateBillCustomerDetails : NewGenerateBillCustomerDetails
 
     override fun onCreateView(
         inflater : LayoutInflater , container : ViewGroup? ,
         savedInstanceState : Bundle? ,
                              ) : View {
         creditBillBinding = FragmentCreditBillBinding.inflate(inflater , container , false)
+        val userDao = AppDatabase.getDatabase(requireContext()).newGenerateBillDao()
+        val repository = NewGenerateBillRepository(userDao)
+        val viewModelFactory = NewGenerateBillViewModelFactory(repository)
+        newGenerateBillViewModel = ViewModelProvider(this , viewModelFactory)[NewGenerateBillViewModel::class.java]
+
         // Set up the RecyclerView
         productAdapter = ProductAdapter(this , addedProductList)
         creditBillBinding.productsRecyclerView.layoutManager = LinearLayoutManager(context)
@@ -44,6 +64,36 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
         creditBillBinding.tiePaymentStatus.setOnSingleClickListener {
             popUpMenuItems(creditBillBinding.tiePaymentStatus)
         }
+        creditBillBinding.generateBillButton.setOnSingleClickListener {
+            if (creditBillBinding.tiePaymentStatus.text.toString()=="Partially Paid"){
+                newGenerateBillCustomerDetails = NewGenerateBillCustomerDetails(
+                        id ,
+                        creditBillBinding.tieCustomerName.text.toString().trim() ,
+                        addedProductList.toMutableList() ,
+                        creditBillBinding.tiePaidAmount.text.toString().trim() ,
+                        creditBillBinding.tiePaymentMethod.text.toString().trim() ,
+                        creditBillBinding.tiePaymentStatus.text.toString().trim() ,
+                        creditBillBinding.tiePhoneNumber.text.toString().trim(),
+                        true
+                                                                               )
+                Log.d("TAG" , "onCreateView: $newGenerateBillCustomerDetails")
+            }else {
+                newGenerateBillCustomerDetails = NewGenerateBillCustomerDetails(
+                        id ,
+                        creditBillBinding.tieCustomerName.text.toString().trim() ,
+                        addedProductList.toMutableList() ,
+                        creditBillBinding.tiePaidAmount.text.toString().trim() ,
+                        creditBillBinding.tiePaymentMethod.text.toString().trim() ,
+                        creditBillBinding.tiePaymentStatus.text.toString().trim() ,
+                        creditBillBinding.tiePhoneNumber.text.toString().trim(),
+                        false
+                                                                                   )
+                Log.d("TAG" , "onCreateView: $newGenerateBillCustomerDetails")
+            }
+            newGenerateBillViewModel.insert(newGenerateBillCustomerDetails)
+            showErrorSnackBar(requireView(),"Customer Bill Generated Successfully")
+            findNavController().navigate(R.id.analysisFragment)
+        }
         updateRecyclerViewVisibility()
         return creditBillBinding.root
     }
@@ -53,7 +103,7 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
         dialog.show(childFragmentManager , "FullScreenDialog")
     }
 
-    override fun onProductAdded(product : AddProductItemDetails) {
+    override fun onProductAdded(product : CustomerProductDetail) {
         addedProductList.add(product)
         productAdapter.notifyItemInserted(addedProductList.size - 1) // Notify adapter of new item
         updateRecyclerViewVisibility() // Update visibility based on list size
@@ -72,7 +122,7 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
         }
     }
 
-    override fun onProductItemDelete(product : AddProductItemDetails , position : Int) {
+    override fun onProductItemDelete(product : CustomerProductDetail , position : Int) {
         requireContext().toastMsg("Item Removed" , requireContext())
         addedProductList.removeAt(position)
         productAdapter.notifyItemRemoved(position)

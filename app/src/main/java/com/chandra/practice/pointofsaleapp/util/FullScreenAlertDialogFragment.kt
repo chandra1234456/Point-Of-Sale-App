@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.chandra.practice.pointofsaleapp.R
-import com.chandra.practice.pointofsaleapp.data.AddProductItemDetails
+import com.chandra.practice.pointofsaleapp.data.CustomerProductDetail
 import com.chandra.practice.pointofsaleapp.databinding.FragmentFullScreenAlertDialogBinding
 
 
@@ -17,7 +17,7 @@ class FullScreenAlertDialogFragment : DialogFragment() {
     private val TAG : String = "example_dialog"
 
     interface OnProductAddedListener {
-        fun onProductAdded(product: AddProductItemDetails)
+        fun onProductAdded(product: CustomerProductDetail)
     }
 
     private var listener: OnProductAddedListener? = null
@@ -54,15 +54,14 @@ class FullScreenAlertDialogFragment : DialogFragment() {
         fullScreenAlertDialogBinding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_save -> {
-                    val data = AddProductItemDetails(
+                    val data = CustomerProductDetail(
                                     fullScreenAlertDialogBinding.tieComments.text.toString(),
                                     fullScreenAlertDialogBinding.tieProductName.text.toString(),
                                     fullScreenAlertDialogBinding.tieProductPrice.text.toString(),
-                                    fullScreenAlertDialogBinding.tieQuantity.text.toString()
+                                    fullScreenAlertDialogBinding.tieQuantity.text.toString().toInt()
                                                  )
                     Log.d(TAG , "onViewCreated: $data")
                     listener?.onProductAdded(data) // Send data back
-
                     dismiss()
                     true
                 }
