@@ -2,6 +2,7 @@ package com.chandra.practice.pointofsaleapp
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -11,13 +12,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mainBinding : ActivityMainBinding
+    private  var mainBinding : ActivityMainBinding? =null
     private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mainBinding.root)
+        setContentView(mainBinding !!.root)
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         // Handle navigation item selections
-        mainBinding.bottomNav.setOnNavigationItemSelectedListener { item ->
+        mainBinding !!.bottomNav.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {
                     navController.navigate(R.id.homeFragment)
@@ -70,6 +71,31 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        setupBackPressedHandler()
 
+    }
+    private fun setupBackPressedHandler() {
+        // Handling the back press when bottom navigation is used
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                // Check if the NavController can pop back stack
+                if (navController.currentDestination?.id == R.id.homeFragment) {
+                    // If at the start fragment (firstFragment), allow back press
+                    finish()  // Or implement custom exit logic
+                } else {
+                    // Otherwise, just pop the back stack
+                    navController.popBackStack()
+                }
+            }
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mainBinding = null
+    }
+    // Handle ActionBar's back button (optional)
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(navController, null) || super.onSupportNavigateUp()
     }
 }

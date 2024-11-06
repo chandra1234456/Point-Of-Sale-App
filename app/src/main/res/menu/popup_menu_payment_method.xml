@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/one"
-        android:title="CASH" />
+        android:title="Cash Payment" />
     <item
         android:id="@+id/two"
-        android:title="ONLINE"/>
+        android:title="UPI Payment"/>
 </menu>

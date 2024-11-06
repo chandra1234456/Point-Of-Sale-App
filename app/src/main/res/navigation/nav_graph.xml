@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -25,6 +25,15 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_creditBillFragment"
+            app:destination="@id/creditBillFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_analysisFragment"
+            app:destination="@id/analysisFragment" />
     </fragment>
     <fragment
         android:id="@+id/createAccountFragment"
@@ -51,4 +60,13 @@
         android:name="com.chandra.practice.pointofsaleapp.fragments.CreditBillFragment"
         android:label="fragment_credit_bill"
         tools:layout="@layout/fragment_credit_bill" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.chandra.practice.pointofsaleapp.fragments.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

@@ -21,16 +21,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Generate Bill"
+            android:textStyle="bold"
             android:textSize="28sp" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/genarateBillToolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/genarateBillToolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,17 +39,32 @@
             android:orientation="vertical"
             android:paddingHorizontal="10dp">
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/customerDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="2dp"
+                android:drawableStart="@drawable/ic_person_2"
+                android:drawablePadding="10dp"
+                android:text="Customer Details"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/fullNameInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="5dp"
                 android:hint="Customer Name *">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fullNameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_person_outline"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -60,7 +76,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/businessNameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_local_phone"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textview.MaterialTextView
@@ -68,10 +86,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:drawableStart="@drawable/ic_shopping_cart"
                 android:layout_marginBottom="10dp"
-                android:text="Product Details"
+                android:drawableStart="@drawable/ic_shopping_cart_2"
                 android:drawablePadding="10dp"
+                android:text="Product Details"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
@@ -92,16 +110,15 @@
                 <ImageView
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:src="@drawable/ic_arrow_left"
-                    app:tint="@color/black" />
+                    android:src="@drawable/ic_shopping_basket" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/itemsEmpty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="No Product Items added"
-                    android:textColor="@android:color/black"
+                    android:text="No Product Items Added"
+                    android:textColor="@color/grey"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -111,7 +128,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Add Item"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:tint="@color/white"
+                app:cornerRadius="5dp"
+                app:icon="@drawable/ic_add_shopping_cart"
+                app:iconGravity="textStart" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/paymentDetails"
@@ -119,6 +140,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
+                android:drawableStart="@drawable/ic_credit_card"
+                android:drawablePadding="10dp"
                 android:text="Payment Details"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
@@ -128,32 +151,53 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:hint="Payment Method *">
+                android:hint="Payment Method *"
+                app:endIconDrawable="@drawable/ic_down_arrow"
+                app:endIconMode="custom">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiePaymentMethod"
                     android:layout_width="match_parent"
-                    android:inputType="none"
-                    android:longClickable="false"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
+                    android:drawableStart="@drawable/ic_payments"
+                    android:drawablePadding="10dp"
                     android:focusable="false"
-                    android:layout_height="wrap_content" />
+                    android:inputType="none"
+                    android:longClickable="false" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilPaymentStatus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Payment Status *">
+                android:hint="Payment Status *"
+                app:endIconDrawable="@drawable/ic_down_arrow"
+                app:endIconMode="custom">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiePaymentStatus"
                     android:layout_width="match_parent"
-                    android:inputType="none"
-                    android:focusable="false"
-                    android:longClickable="false"
+                    android:layout_height="wrap_content"
                     android:clickable="true"
-                    android:layout_height="wrap_content" />
+                    android:drawableStart="@drawable/ic_check_circle"
+                    android:drawablePadding="10dp"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:longClickable="false" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPaidAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Paid Amount *">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiePaidAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_money"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -161,8 +205,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
                 android:text="Generate Bill"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:tint="@color/white"
+                app:cornerRadius="5dp"
+                app:icon="@drawable/ic_receipt_long"
+                app:iconGravity="textStart" />
         </LinearLayout>
     </ScrollView>
 

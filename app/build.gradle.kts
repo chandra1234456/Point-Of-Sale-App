@@ -1,18 +1,19 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.chandra.practice.pointofsaleapp"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.chandra.practice.pointofsaleapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,6 +27,10 @@ android {
                          )
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
+
     viewBinding.enable = true
     dataBinding.enable = true
     compileOptions {
@@ -53,5 +58,21 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     //gson
     implementation(libs.gson)
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+    // Room components
+    implementation (libs.androidx.room.runtime)
+    kapt ("androidx.room:room-compiler:2.6.1") // For Kotlin use kapt
+    // Lifecycle components
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // Lifecycle dependencies (for lifecycleScope)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    // Coroutine integration with Room
+    implementation(libs.androidx.room.ktx)
+    // Room Testing
+    testImplementation(libs.androidx.room.testing)
+
 
 }

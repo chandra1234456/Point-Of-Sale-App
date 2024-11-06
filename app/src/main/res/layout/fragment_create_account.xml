@@ -5,28 +5,29 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_left"
-        app:navigationIconTint="@color/black"
-        app:title="Create Account" />
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:fillViewport="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_arrow_left"
+                app:navigationIconTint="@color/black"
+                app:title="Create Account" />
+
 
             <TextView
                 android:id="@+id/Text"
@@ -40,8 +41,7 @@
                 android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <!-- Full Name -->
             <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +57,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/fullNameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_person_outline"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Business Name -->
@@ -73,7 +75,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/businessNameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_add_business"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Business Address -->
@@ -89,7 +93,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/businessAddressEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_business"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Phone Number -->
@@ -106,6 +112,10 @@
                     android:id="@+id/phoneNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_local_phone"
+                    android:drawablePadding="10dp"
+                    android:digits="0123456789"
+                    android:maxLength="10"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,6 +133,8 @@
                     android:id="@+id/emailAddressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="10dp"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,6 +152,8 @@
                     android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_password"
+                    android:drawablePadding="10dp"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,6 +163,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="GST Number"
+                app:helperText="Ex: 22AAAAA0000A1Z5 GST Format"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/passwordInputLayout">
@@ -156,7 +171,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/gstNumberEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_format_list"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Bill Rules -->
@@ -172,7 +189,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/billRulesEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_rule"
+                    android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Notes -->
@@ -181,6 +200,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Notes"
+                app:helperText="Please Describe Your Business"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/billRulesInputLayout">
@@ -188,36 +208,41 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/notesEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_edit"
+                    android:drawablePadding="10dp"
+                    android:drawableTint="#2D2D8E" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Signature Photo -->
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/signaturePhotoText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/border"
-                android:gravity="center"
+                android:drawableStart="@drawable/ic_add_photo_alternate"
+                android:drawablePadding="40dp"
                 android:padding="16dp"
                 android:text="Tap to add your signature photo"
-                android:textAlignment="center"
                 android:textColor="@android:color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/notesInputLayout" />
 
+            <!-- Create Account Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/createButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:text="Create Account"
+                app:cornerRadius="5dp"
                 android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/signaturePhotoText" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

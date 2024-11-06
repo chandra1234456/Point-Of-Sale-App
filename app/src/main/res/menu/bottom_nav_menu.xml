@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/home"
@@ -14,7 +15,7 @@
     <item
         android:id="@+id/createBill"
         android:icon="@drawable/ic_credit_bill"
-        android:title="Create Bill" />
+        android:title="New Bill" />
 
     <item
         android:id="@+id/notification"
@@ -23,7 +24,8 @@
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_notification"
+        android:icon="@drawable/ic_person_2"
+        app:iconTint="@color/grey"
         android:title="Profile" />
 
 
