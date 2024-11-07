@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_analysisFragment"
             app:destination="@id/analysisFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_incompleteTransactionFragment"
+            app:destination="@id/incompleteTransactionFragment" />
     </fragment>
     <fragment
         android:id="@+id/createAccountFragment"
@@ -69,4 +72,13 @@
             android:id="@+id/action_splashScreenFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/incompleteTransactionFragment"
+        android:name="com.chandra.practice.pointofsaleapp.fragments.IncompleteTransactionFragment"
+        android:label="fragment_incomplete_transaction"
+        tools:layout="@layout/fragment_incomplete_transaction" />
+    <fragment
+        android:id="@+id/completeTransactionFragment"
+        android:name="com.chandra.practice.pointofsaleapp.fragments.CompleteTransactionFragment"
+        android:label="CompleteTransactionFragment" />
 </navigation>

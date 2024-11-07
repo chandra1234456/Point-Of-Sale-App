@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.chandra.practice.pointofsaleapp.data.NewGenerateBillCustomerDetails
@@ -11,7 +12,7 @@ import com.chandra.practice.pointofsaleapp.data.NewGenerateBillCustomerDetails
 @Dao
 interface NewGenerateBillDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE) // REPLACE will update the existing row with the same 'id'
     suspend fun insert(user : NewGenerateBillCustomerDetails)
 
     @Update

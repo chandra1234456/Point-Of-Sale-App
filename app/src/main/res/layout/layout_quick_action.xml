@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="8dp"
-        app:cardCornerRadius="5dp"
-        app:cardUseCompatPadding="true">
+        app:cardCornerRadius="5dp">
 
         <LinearLayout
+            android:id="@+id/quickActionLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -23,10 +23,10 @@
 
             <ImageView
                 android:id="@+id/ivImageIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="45dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:layout_margin="10dp"
+                android:layout_marginTop="10dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_check_circle" />
 
@@ -35,11 +35,11 @@
                 android:id="@+id/tvTransactionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:text="Total Revenue"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

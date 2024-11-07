@@ -28,6 +28,7 @@ import com.chandra.practice.pointofsaleapp.viewmodel.NewGenerateBillViewModel
 import com.chandra.practice.pointofsaleapp.viewmodelfactory.CreateAccountViewModelFactory
 import com.chandra.practice.pointofsaleapp.viewmodelfactory.NewGenerateBillViewModelFactory
 import com.google.android.material.textfield.TextInputEditText
+import java.math.BigDecimal
 import kotlin.math.log
 
 
@@ -38,7 +39,7 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
     private lateinit var productAdapter : ProductAdapter
     private lateinit var newGenerateBillViewModel : NewGenerateBillViewModel
     private lateinit var newGenerateBillCustomerDetails : NewGenerateBillCustomerDetails
-
+    private var totalPrice = 0
     override fun onCreateView(
         inflater : LayoutInflater , container : ViewGroup? ,
         savedInstanceState : Bundle? ,
@@ -54,6 +55,16 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
         creditBillBinding.productsRecyclerView.layoutManager = LinearLayoutManager(context)
         creditBillBinding.productsRecyclerView.adapter = productAdapter
 
+        val totalAmount = productAdapter.calculateTotalAmount()
+        Log.d("TAG" , "totalPrice: $totalAmount")
+        val totalAmountStr = if (totalAmount == BigDecimal.ZERO) "0" else totalAmount.toPlainString()
+        creditBillBinding.tvTotalAmount.text = "Total Amount $totalAmountStr"
+
+        //Calculating Total Products Cost
+        for (i in addedProductList.iterator()) {
+            totalPrice += i.productPrice.toInt()
+        }
+
         // Handle the add item button click
         creditBillBinding.addItemButton.setOnSingleClickListener {
             openFullScreenAlertDialog()
@@ -67,26 +78,24 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
         creditBillBinding.generateBillButton.setOnSingleClickListener {
             if (creditBillBinding.tiePaymentStatus.text.toString()=="Partially Paid"){
                 newGenerateBillCustomerDetails = NewGenerateBillCustomerDetails(
-                        id ,
-                        creditBillBinding.tieCustomerName.text.toString().trim() ,
-                        addedProductList.toMutableList() ,
-                        creditBillBinding.tiePaidAmount.text.toString().trim() ,
-                        creditBillBinding.tiePaymentMethod.text.toString().trim() ,
-                        creditBillBinding.tiePaymentStatus.text.toString().trim() ,
-                        creditBillBinding.tiePhoneNumber.text.toString().trim(),
-                        true
+                        customerName = creditBillBinding.tieCustomerName.text.toString().trim() ,
+                        customerProductDetails = addedProductList.toMutableList() ,
+                        paidAmount = creditBillBinding.tiePaidAmount.text.toString().trim() ,
+                        paymentMethod = creditBillBinding.tiePaymentMethod.text.toString().trim() ,
+                        paymentStatus = creditBillBinding.tiePaymentStatus.text.toString().trim() ,
+                        phoneNumber = creditBillBinding.tiePhoneNumber.text.toString().trim(),
+                        fullyNotPaid = true, totalAmount = "", remainingAmount = "", transactionDateTime = ""
                                                                                )
                 Log.d("TAG" , "onCreateView: $newGenerateBillCustomerDetails")
             }else {
                 newGenerateBillCustomerDetails = NewGenerateBillCustomerDetails(
-                        id ,
-                        creditBillBinding.tieCustomerName.text.toString().trim() ,
-                        addedProductList.toMutableList() ,
-                        creditBillBinding.tiePaidAmount.text.toString().trim() ,
-                        creditBillBinding.tiePaymentMethod.text.toString().trim() ,
-                        creditBillBinding.tiePaymentStatus.text.toString().trim() ,
-                        creditBillBinding.tiePhoneNumber.text.toString().trim(),
-                        false
+                        customerName = creditBillBinding.tieCustomerName.text.toString().trim() ,
+                        customerProductDetails = addedProductList.toMutableList() ,
+                        paidAmount = creditBillBinding.tiePaidAmount.text.toString().trim() ,
+                        paymentMethod = creditBillBinding.tiePaymentMethod.text.toString().trim() ,
+                        paymentStatus = creditBillBinding.tiePaymentStatus.text.toString().trim() ,
+                        phoneNumber = creditBillBinding.tiePhoneNumber.text.toString().trim(),
+                        fullyNotPaid = false , totalAmount = "", remainingAmount = "", transactionDateTime = ""
                                                                                    )
                 Log.d("TAG" , "onCreateView: $newGenerateBillCustomerDetails")
             }
@@ -107,6 +116,7 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
         addedProductList.add(product)
         productAdapter.notifyItemInserted(addedProductList.size - 1) // Notify adapter of new item
         updateRecyclerViewVisibility() // Update visibility based on list size
+        productAdapter.notifyDataSetChanged()
     }
 
     private fun updateRecyclerViewVisibility() {
@@ -122,10 +132,11 @@ class CreditBillFragment : Fragment() , FullScreenAlertDialogFragment.OnProductA
         }
     }
 
-    override fun onProductItemDelete(product : CustomerProductDetail , position : Int) {
+    override fun onClickProductItemDelete(product : CustomerProductDetail , position : Int) {
         requireContext().toastMsg("Item Removed" , requireContext())
         addedProductList.removeAt(position)
         productAdapter.notifyItemRemoved(position)
+        productAdapter.notifyDataSetChanged()
     }
 
     private fun popUpMenuItems(editText : TextInputEditText) {

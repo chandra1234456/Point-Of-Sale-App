@@ -9,7 +9,7 @@ data class QuickActionItems(
     @SerializedName("transactionText")
     var transactionText : String ,
     @SerializedName("transactionBackgroundColor")
-    var transactionBackgroundColor : String ,
+    var transactionBackgroundColor : Int ,
     @SerializedName("transactionTextColor")
     var transactionTextColor : Int ,
 

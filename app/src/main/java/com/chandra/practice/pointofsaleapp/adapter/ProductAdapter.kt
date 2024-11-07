@@ -9,13 +9,14 @@ import com.chandra.practice.pointofsaleapp.R
 import com.chandra.practice.pointofsaleapp.data.CustomerProductDetail
 import com.chandra.practice.pointofsaleapp.util.setOnSingleClickListener
 import com.google.android.material.textview.MaterialTextView
+import java.math.BigDecimal
 
 class ProductAdapter(
-    private val listner : OnProductAdapterListener ,
+    private val listener : OnProductAdapterListener ,
     private val productList : List<CustomerProductDetail> ,
                     ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     interface OnProductAdapterListener {
-        fun onProductItemDelete(product : CustomerProductDetail , position : Int)
+        fun onClickProductItemDelete(product : CustomerProductDetail , position : Int)
     }
 
     class ProductViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -38,10 +39,19 @@ class ProductAdapter(
         holder.productPrice.text = "Price: ${product.productPrice}"
         holder.quantity.text = "Quantity: ${product.productQuantity}"
         holder.comments.text = "Comments: ${product.comments}" // If you want to show comments
+
         holder.ivDelete.setOnSingleClickListener {
-            listner.onProductItemDelete(product , position)
+            listener.onClickProductItemDelete(product , position)
         }
+
     }
 
     override fun getItemCount() : Int = productList.size
+
+    fun calculateTotalAmount(): BigDecimal {
+        return productList.fold(BigDecimal.ZERO) { sum, product ->
+            sum.add(product.productPrice.multiply(BigDecimal(product.productQuantity)))
+        }
+    }
 }
+

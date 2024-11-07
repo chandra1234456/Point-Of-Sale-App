@@ -48,7 +48,6 @@ class CreateAccountFragment : Fragment() , CustomBottomSheet.BottomSheetClickLis
             val isValid = validateForm()
             if (isValid) {
                 val user = CreateAccountDetails(
-                        id ,
                         billRules = createAccountBinding.fullNameEditText.text.toString().trim() ,
                         businessAddress = createAccountBinding.businessAddressEditText.text.toString()
                                 .trim() ,
@@ -174,7 +173,7 @@ class CreateAccountFragment : Fragment() , CustomBottomSheet.BottomSheetClickLis
         }
 
         // Disable or enable create button based on validation status
-        createAccountBinding.createButton.isEnabled = isValid
+       // createAccountBinding.createButton.isEnabled = isValid
 
         return isValid
     }

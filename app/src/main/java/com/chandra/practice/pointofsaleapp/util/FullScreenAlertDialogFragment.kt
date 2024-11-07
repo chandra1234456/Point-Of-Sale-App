@@ -54,10 +54,12 @@ class FullScreenAlertDialogFragment : DialogFragment() {
         fullScreenAlertDialogBinding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_save -> {
+                   val price = fullScreenAlertDialogBinding.tieProductPrice.text.toString().toBigDecimal()
+                    val quantity = fullScreenAlertDialogBinding.tieQuantity.text.toString().toBigDecimal()
                     val data = CustomerProductDetail(
                                     fullScreenAlertDialogBinding.tieComments.text.toString(),
                                     fullScreenAlertDialogBinding.tieProductName.text.toString(),
-                                    fullScreenAlertDialogBinding.tieProductPrice.text.toString(),
+                                    (price * quantity) ,
                                     fullScreenAlertDialogBinding.tieQuantity.text.toString().toInt()
                                                  )
                     Log.d(TAG , "onViewCreated: $data")

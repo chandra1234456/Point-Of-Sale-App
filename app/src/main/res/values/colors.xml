@@ -13,4 +13,8 @@
     <color name="orange">#F8611F</color>
     <color name="transparent">#F1EAE7</color>
     <color name="red">#F81313</color>
+    <color name="light_orange">#FFE0D2</color>
+    <color name="light_green">#E3F6CB</color>
+    <color name="medium_green">#4FBB2B</color>
+    <color name="medium_orange">#F8611F</color>
 </resources>

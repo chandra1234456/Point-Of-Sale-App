@@ -77,6 +77,8 @@
                     android:id="@+id/tiePhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:inputType="number"
                     android:drawableStart="@drawable/ic_local_phone"
                     android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -121,6 +123,15 @@
                     android:textColor="@color/grey"
                     android:textSize="18sp" />
             </LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvTotalAmount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textAlignment="textEnd"
+                android:text="Total Amount "
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addItemButton"
@@ -196,6 +207,8 @@
                     android:id="@+id/tiePaidAmount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="0123456789"
+                    android:inputType="number"
                     android:drawableStart="@drawable/ic_money"
                     android:drawablePadding="10dp" />
             </com.google.android.material.textfield.TextInputLayout>

@@ -18,6 +18,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun createAccountDao(): CreateAccountDao
     abstract fun newGenerateBillDao(): NewGenerateBillDao
 
+
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
@@ -33,10 +34,12 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
+      //  .fallbackToDestructiveMigration()  // Resets the database if version mismatch occurs
+
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // This would be the SQL to migrate your database schema
-                database.execSQL("CREATE TABLE IF NOT EXISTS `userGenerateBillTable` (...)")
+                // Example: Add a new column to an existing table
+                database.execSQL("ALTER TABLE users ADD COLUMN age INTEGER NOT NULL DEFAULT 0")
             }
         }
     }

@@ -3,23 +3,21 @@ package com.chandra.practice.pointofsaleapp.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.gson.annotations.SerializedName
+import androidx.room.TypeConverters
+import com.chandra.practice.pointofsaleapp.util.Converters
 
 @Entity(tableName = "userGenerateBillTable")
 data class NewGenerateBillCustomerDetails(
-    @PrimaryKey(autoGenerate = true) val id : Int = 0 ,
-    @SerializedName("customerName")
+    @PrimaryKey(autoGenerate = true) var id : Long = 0 ,
     var customerName : String ,
-    @SerializedName("customerProductDetails")
+    @TypeConverters(Converters::class)
     var customerProductDetails : List<CustomerProductDetail> ,
-    @SerializedName("paidAmount")
     var paidAmount : String ,
-    @SerializedName("paymentMethod")
     var paymentMethod : String ,
-    @SerializedName("paymentStatus")
     var paymentStatus : String ,
-    @SerializedName("phoneNumber")
     var phoneNumber : String ,
-    @SerializedName("fullyPaidOrNot")
-    var fullyPaidOrNot : Boolean ,
+    var fullyNotPaid : Boolean ,
+    var totalAmount : String ,
+    var remainingAmount : String ,
+    var transactionDateTime : String ,
                                          )

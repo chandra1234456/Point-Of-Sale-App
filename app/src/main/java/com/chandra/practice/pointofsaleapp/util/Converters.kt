@@ -6,19 +6,18 @@ import com.google.gson.reflect.TypeToken
 import com.chandra.practice.pointofsaleapp.data.CustomerProductDetail
 
 class Converters {
-
-    // Convert List<CustomerProductDetail> to String (JSON)
+    // Convert List<CustomerProductDetail> to JSON string
     @TypeConverter
     fun fromCustomerProductDetailList(value: List<CustomerProductDetail>?): String? {
         val gson = Gson()
-        return gson.toJson(value)  // Converts the list to a JSON string
+        return gson.toJson(value)  // Converts list to JSON string
     }
 
-    // Convert String (JSON) back to List<CustomerProductDetail>
+    // Convert JSON string back to List<CustomerProductDetail>
     @TypeConverter
     fun toCustomerProductDetailList(value: String?): List<CustomerProductDetail>? {
         val gson = Gson()
         val listType = object : TypeToken<List<CustomerProductDetail>>() {}.type
-        return gson.fromJson(value, listType)  // Converts the JSON string back to a list
+        return gson.fromJson(value, listType)  // Converts JSON string back to list
     }
 }

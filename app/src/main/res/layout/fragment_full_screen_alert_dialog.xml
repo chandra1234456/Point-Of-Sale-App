@@ -63,6 +63,8 @@
                     android:id="@+id/tieProductPrice"
                     android:layout_width="match_parent"
                     android:maxLines="1"
+                    android:digits="0123456789"
+                    android:inputType="number"
                     android:drawableStart="@drawable/ic_price_check"
                     android:drawablePadding="10dp"
                     android:layout_height="wrap_content" />
@@ -80,6 +82,8 @@
                     android:id="@+id/tieQuantity"
                     android:layout_width="match_parent"
                     android:maxLines="1"
+                    android:digits="0123456789"
+                    android:inputType="number"
                     android:drawableStart="@drawable/ic_edit_square"
                     android:drawablePadding="10dp"
                     android:layout_height="wrap_content" />
