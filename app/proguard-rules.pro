@@ -129,3 +129,82 @@
 #Keep Kotlin Synthetic Accessors  Kotlin synthetic properties (import kotlinx.android.synthetic.main.*)
 # Keep Kotlin synthetic accessors
 -keep class kotlinx.android.synthetic.** { *; }
+
+#Preserve Classes and Methods for AES Encryption
+# Preserve Cipher and other cryptography-related classes
+-keep class javax.crypto.** { *; }
+-keep class javax.crypto.spec.** { *; }
+-keep class javax.crypto.KeyGenerator { *; }
+
+# Preserve methods in Cipher and other encryption-related classes
+-keepclassmembers class javax.crypto.Cipher {
+    #public static * getInstance(...);
+    #public * init(...);
+    #public * do33Final(...);
+}
+
+# Preserve SecretKey and related classes
+-keep class javax.crypto.SecretKey { *; }
+-keep class javax.crypto.spec.IvParameterSpec { *; }
+
+# Preserve all generated methods for encryption and decryption
+-keepclassmembers class * {
+    public <methods>;
+}
+
+# Keep encryption and decryption method signatures (e.g., encrypt, decrypt) from obfuscation
+-keepclassmembers class * {
+    public static ** encrypt(...);
+    public static ** decrypt(...);
+}
+
+# If you are using KeyGenerator for generating AES keys, make sure it is not obfuscated
+-keepclassmembers class javax.crypto.KeyGenerator {
+    public static <methods>;
+}
+
+#Keep Classes Involved in Encryption Algorithms
+# Keep classes involved in AES encryption algorithms and any related transformations
+-keep class javax.crypto.Cipher { *; }
+#-keep class javax.crypto.KeyFactory { *; }
+#-keep class javax.crypto.KeyPairGenerator { *; }
+
+# Preserve KeyStore if Used
+# Keep Android Keystore classes
+-keep class android.security.keystore.** { *; }
+-keep class java.security.KeyStore { *; }
+-keep class java.security.KeyStore$Entry { *; }
+-keep class java.security.Key { *; }
+
+#Keep Classes for Custom Encryption Methods
+# Keep custom encryption classes/methods
+-keep class com.chandra.practice.pointofsaleapp.util.EncryptionUtils { *; }
+-keepclassmembers class com.chandra.practice.pointofsaleapp.util.EncryptionUtils {
+     #public static com.chandra.practice.pointofsaleapp.util.EncryptionUtils.encrypt(java.lang.String, javax.crypto.SecretKey);//error
+     #public static java.lang.String decrypt(java.lang.String, javax.crypto.SecretKey);//error
+
+}
+#Avoid Obfuscating String-based Encryption Keys
+# Keep all string values, especially if they are used as keys
+-keepclassmembers class * {
+    public static final java.lang.String *;
+}
+#Keep Methods for Key Generation (if using KeyGenerator)
+# Keep KeyGenerator methods from obfuscation
+-keepclassmembers class javax.crypto.KeyGenerator {
+#    public static javax.crypto.SecretKey generateKey(...);//error
+}
+
+# Keep Methods Used for Base64 Encoding/Decoding
+# Keep Base64 encoding/decoding methods
+-keep class java.util.Base64 { *; }
+
+# Keep Standard Security Libraries
+# Keep Java security-related classes
+-keep class java.security.MessageDigest { *; }
+-keep class java.security.SecureRandom { *; }
+
+# Keep string-based encryption keys intact
+-keepclassmembers class * {
+    public static final java.lang.String *;
+}

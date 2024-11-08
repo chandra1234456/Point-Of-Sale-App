@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Title for the Contact Us Page -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/contactUsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Contact Us"
+        android:textColor="@android:color/black"
+        android:textSize="24sp" />
+
+    <!-- Description -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/contactDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="If you have any questions or feedback, feel free to reach out to us."
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write Your Issue ?">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/issueText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <!-- Send Email Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sendEmailButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:onClick="sendEmail"
+        android:padding="16dp"
+        android:text="Send Email"
+        android:textSize="16sp"
+        app:cornerRadius="5dp" />
+
+</LinearLayout>

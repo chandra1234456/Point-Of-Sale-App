@@ -17,7 +17,7 @@ interface CreateAccountDao {
     suspend fun delete(user: CreateAccountDetails)
 
     @Query("SELECT * FROM userCreationTable ORDER BY customerFullName ASC")
-    fun getAllUsers(): LiveData<List<CreateAccountDetails>>
+    fun getAllUserDetails(): LiveData<List<CreateAccountDetails>>
 
     @Query("SELECT * FROM userCreationTable WHERE id = :id")
     suspend fun getUserById(id: Long): CreateAccountDetails?

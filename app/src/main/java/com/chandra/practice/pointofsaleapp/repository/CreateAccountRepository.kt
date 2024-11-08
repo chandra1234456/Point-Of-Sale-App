@@ -6,7 +6,7 @@ import com.chandra.practice.pointofsaleapp.roomdb.CreateAccountDao
 
 class CreateAccountRepository(private val userDao: CreateAccountDao) {
 
-    val allUsers: LiveData<List<CreateAccountDetails>> = userDao.getAllUsers()
+    val loginUserDetails: LiveData<List<CreateAccountDetails>> = userDao.getAllUserDetails()
 
     suspend fun insert(user: CreateAccountDetails) {
         userDao.insert(user)

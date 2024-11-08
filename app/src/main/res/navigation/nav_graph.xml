@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_loginFragment_to_createAccountFragment"
             app:destination="@id/createAccountFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_completeTransactionFragment"
+            app:destination="@id/completeTransactionFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -47,7 +50,14 @@
         android:id="@+id/profileFragment"
         android:name="com.chandra.practice.pointofsaleapp.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_contactUsFragment"
+            app:destination="@id/contactUsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/analysisFragment"
         android:name="com.chandra.practice.pointofsaleapp.fragments.AnalysisFragment"
@@ -81,4 +91,13 @@
         android:id="@+id/completeTransactionFragment"
         android:name="com.chandra.practice.pointofsaleapp.fragments.CompleteTransactionFragment"
         android:label="CompleteTransactionFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.chandra.practice.pointofsaleapp.fragments.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/contactUsFragment"
+        android:name="com.chandra.practice.pointofsaleapp.fragments.ContactUsFragment"
+        android:label="ContactUsFragment" />
 </navigation>

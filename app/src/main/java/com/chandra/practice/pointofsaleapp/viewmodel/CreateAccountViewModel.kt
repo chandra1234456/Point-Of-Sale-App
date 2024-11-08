@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 
 class CreateAccountViewModel(private val repository: CreateAccountRepository) : ViewModel() {
 
-    val allUsers: LiveData<List<CreateAccountDetails>> = repository.allUsers
+    val getLoginUserDetails: LiveData<List<CreateAccountDetails>> = repository.loginUserDetails
 
     fun insert(user: CreateAccountDetails) {
         viewModelScope.launch(Dispatchers.IO) {

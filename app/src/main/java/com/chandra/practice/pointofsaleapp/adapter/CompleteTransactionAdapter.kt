@@ -11,7 +11,7 @@ import com.chandra.practice.pointofsaleapp.data.NewGenerateBillCustomerDetails
 import com.chandra.practice.pointofsaleapp.util.setOnSingleClickListener
 import com.google.android.material.textview.MaterialTextView
 
-class CompleteTransactionAdapter( private val listener : OnIncompleteTransactionItemsClickListeners ,
+class CompleteTransactionAdapter(private val listener : OnIncompleteTransactionItemsClickListeners ,
 private val list : List<NewGenerateBillCustomerDetails> ,
 ) :
 RecyclerView.Adapter<CompleteTransactionAdapter.CompleteTransactionItemsViewHolder>() {

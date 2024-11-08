@@ -58,8 +58,11 @@
                     android:id="@+id/fullNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/ALPHA_LOWER"
                     android:drawableStart="@drawable/ic_person_outline"
-                    android:drawablePadding="10dp" />
+                    android:drawablePadding="10dp"
+                    android:inputType="text"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Business Name -->
@@ -76,8 +79,11 @@
                     android:id="@+id/businessNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/ALPHA_UPPER"
                     android:drawableStart="@drawable/ic_add_business"
-                    android:drawablePadding="10dp" />
+                    android:drawablePadding="10dp"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Business Address -->
@@ -94,8 +100,11 @@
                     android:id="@+id/businessAddressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/address"
                     android:drawableStart="@drawable/ic_business"
-                    android:drawablePadding="10dp" />
+                    android:drawablePadding="10dp"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Phone Number -->
@@ -112,11 +121,11 @@
                     android:id="@+id/phoneNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/digits"
                     android:drawableStart="@drawable/ic_local_phone"
                     android:drawablePadding="10dp"
-                    android:digits="0123456789"
-                    android:maxLength="10"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Email Address -->
@@ -133,9 +142,11 @@
                     android:id="@+id/emailAddressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/ALPHA_MIX"
                     android:drawableStart="@drawable/ic_email"
                     android:drawablePadding="10dp"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Password -->
@@ -146,7 +157,8 @@
                 android:hint="Password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailAddressInputLayout">
+                app:layout_constraintTop_toBottomOf="@id/emailAddressInputLayout"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordEditText"
@@ -172,8 +184,11 @@
                     android:id="@+id/gstNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/ALPHA_MIX"
                     android:drawableStart="@drawable/ic_format_list"
-                    android:drawablePadding="10dp" />
+                    android:drawablePadding="10dp"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Bill Rules -->
@@ -190,8 +205,11 @@
                     android:id="@+id/billRulesEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/ALPHA_MIX"
                     android:drawableStart="@drawable/ic_rule"
-                    android:drawablePadding="10dp" />
+                    android:drawablePadding="10dp"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Notes -->
@@ -209,9 +227,12 @@
                     android:id="@+id/notesEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:digits="@string/ALPHA_MIX"
                     android:drawableStart="@drawable/ic_edit"
                     android:drawablePadding="10dp"
-                    android:drawableTint="#2D2D8E" />
+                    android:drawableTint="#2D2D8E"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Signature Photo -->
@@ -237,8 +258,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Create Account"
-                app:cornerRadius="5dp"
                 android:textColor="@android:color/white"
+                app:cornerRadius="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/signaturePhotoText" />

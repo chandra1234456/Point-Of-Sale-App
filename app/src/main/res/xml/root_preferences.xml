@@ -1,0 +1,43 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- General Settings Category -->
+    <PreferenceCategory
+        android:title="General Settings">
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="dark_mode"
+            android:title="Dark Mode"
+            android:defaultValue="false"
+            android:summaryOn="Enabled"
+            android:summaryOff="Disabled" />
+
+        <CheckBoxPreference
+            android:key="notifications_enabled"
+            android:title="Enable Notifications"
+            android:summary="Receive push notifications"
+            android:defaultValue="true" />
+
+        <EditTextPreference
+            android:key="username"
+            android:title="Username"
+            android:summary="Set your username"
+            android:defaultValue=""
+            android:inputType="text" />
+
+    </PreferenceCategory>
+
+    <!-- Advanced Settings Category -->
+    <PreferenceCategory
+        android:title="Advanced Settings">
+
+        <ListPreference
+            android:key="language"
+            android:title="Language"
+            android:summary="Select your language"
+            android:defaultValue="en"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

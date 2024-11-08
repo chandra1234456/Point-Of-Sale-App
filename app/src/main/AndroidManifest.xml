@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PointOfSaleApp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
