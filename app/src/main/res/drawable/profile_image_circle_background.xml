@@ -1,0 +1,19 @@
+<!-- res/drawable/profile_image_circle_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Set the solid background color -->
+    <solid android:color="#E0E0E0" /> <!-- Light gray background color -->
+
+    <!-- Set an optional border -->
+    <stroke
+        android:width="2dp"
+        android:color="#6200EE" /> <!-- Purple border color -->
+
+    <!-- Add padding if needed -->
+    <padding
+        android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp" />
+</shape>
